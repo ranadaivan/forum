@@ -17,7 +17,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h1 class="text-center mb-4">User Registration</h1>
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
 
                             <div class="form-group">
