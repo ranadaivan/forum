@@ -20,8 +20,7 @@ Route::post('/', function (Request $request) {
     $request->session()->put('user', [
         'name' => $validatedData['name'],
         'email' => $validatedData['email'],
-        // You might want to hash the password before storing it
-        // 'password' => bcrypt($validatedData['password']),
+        'password' => $validatedData['password'], // Note: Storing plaintext password in session for simplicity (not recommended in production)
     ]);
 
     // Redirect to login page
@@ -38,14 +37,24 @@ Route::post('/login', function (Request $request) {
     // Retrieve user data from session
     $user = $request->session()->get('user');
 
-    // Authenticate user (dummy logic, replace with actual authentication)
-    if ($user && $user['email'] === $request->input('email') && $user['password'] === $request->input('password')) {
-        // Redirect to welcome page upon successful login
-        return redirect()->route('welcome');
-    } else {
-        // Redirect back to login page with error message
-        return redirect()->route('login')->with('error', 'Invalid credentials.');
+    // Check if the form has been submitted
+    if ($request->isMethod('post')) {
+        // Retrieve email and password from the form submission
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        // Check if user data exists in session
+        if ($user && $user['email'] === $email && $user['password'] === $password) {
+            // Redirect to welcome page upon successful login with success message
+            return redirect()->route('welcome')->with('success', 'Successfully logged in.');
+        } else {
+            // Redirect back to login page with error message
+            return redirect()->route('login')->with('error', 'Invalid credentials. Please try again.');
+        }
     }
+
+    // If the form has not been submitted, simply return the login view
+    return view('login');
 })->name('login.submit');
 
 // Welcome page route (after successful login)
@@ -66,4 +75,3 @@ Route::post('/logout', function (Request $request) {
     // Redirect to login page
     return redirect()->route('login')->with('success', 'Logged out successfully.');
 })->name('logout');
-

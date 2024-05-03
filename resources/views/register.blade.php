@@ -17,7 +17,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h1 class="text-center mb-4">User Registration</h1>
-                        <form method="POST" action="{{ route('login') }}">
+                        <form id="registrationForm">
                             @csrf
 
                             <div class="form-group">
@@ -40,13 +40,34 @@
                                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block mt-4"><h3>Register</h3></button>
+                            <button type="button" onclick="registerUser()" class="btn btn-primary btn-block mt-4"><h3>Register</h3></button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function registerUser() {
+            var formData = new FormData(document.getElementById('registrationForm'));
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '{{ route('register.submit') }}', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Registration successful, redirect to login page
+                    window.location.href = "{{ route('login') }}";
+                } else {
+                    // Handle error
+                    console.error('Error:', xhr.responseText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error('Request failed.');
+            };
+            xhr.send(formData);
+        }
+    </script>
 </body>
 
 </html>
