@@ -16,31 +16,31 @@
             <div class="col-lg-8 col-md-10 mx-auto center-vertically-horizontally">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h2 class="text-center mb-4">User Registration</h2>
+                        <h1 class="text-center mb-4">User Registration</h1>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name" class="mb-0 mt-1"><h5>Name</h5></label>
                                 <input type="text" id="name" name="name" class="form-control" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email" class="mb-0 mt-1"><h5>Email</h5></label>
                                 <input type="email" id="email" name="email" class="form-control" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="password">Password</label>
+                                <label for="password" class="mb-0 mt-1"><h5>Password</h5></label>
                                 <input type="password" id="password" name="password" class="form-control" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="password_confirmation">Confirm Password</label>
+                                <label for="password_confirmation" class="mb-0 mt-1"><h5>Confirm Password</h5></label>
                                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-4"><h3>Register</h3></button>
                         </form>
                     </div>
                 </div>
