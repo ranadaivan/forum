@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,11 @@
     <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
+    <div class="container-fluid full-height">
+        <div class="row full-height">
+            <div class="col-lg-8 col-md-10 mx-auto center-vertically-horizontally">
                 <div class="card shadow">
                     <div class="card-body">
                         <h2 class="text-center mb-4">User Registration</h2>
@@ -46,4 +48,5 @@
         </div>
     </div>
 </body>
+
 </html>
